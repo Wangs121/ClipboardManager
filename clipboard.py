@@ -35,17 +35,19 @@ class ClipboardWindow(QMainWindow):
     # Get the system clipboard contents
     def clipboardChanged(self):
         text = QApplication.clipboard().text()
-        if self.history != text:
-            self.history=text
-            #print(text)
-            #print(repr(text))
-            text = text.replace("-\n", "").replace("\n", " ")
-            QApplication.clipboard().blockSignals(True)
-            pyperclip.copy(text)
-            # QApplication.clipboard().setText(text)
-            print(QApplication.clipboard().text())
-            self.b.setPlainText(text + '\n')
-            QApplication.clipboard().blockSignals(False)
+        print(len(text))
+        if len(text) > 0 :
+            if self.history != text:
+                self.history=text
+                #print(text)
+                #print(repr(text))
+                text = text.replace("-\n", "").replace("\n", " ")
+                QApplication.clipboard().blockSignals(True)
+                pyperclip.copy(text)
+                # QApplication.clipboard().setText(text)
+                print(QApplication.clipboard().text())
+                self.b.setPlainText(text + '\n')
+                QApplication.clipboard().blockSignals(False)
 
         
 
